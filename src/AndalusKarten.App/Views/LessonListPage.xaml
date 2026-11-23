@@ -5,25 +5,26 @@
              x:Class="AndalusKarten.Views.LessonListPage"
              x:DataType="vm:LessonsViewModel">
 
-    <CollectionView ItemsSource="{Binding Lessons}"
-                    SelectionMode="None"
-                    MaximumWidthRequest="760">
+    <CollectionView ItemsSource="{Binding Lessons}" SelectionMode="None" MaximumWidthRequest="820">
         <CollectionView.Header>
-            <VerticalStackLayout Padding="16,16,16,4" Spacing="12">
+            <VerticalStackLayout Padding="16,8,16,8" Spacing="14">
                 <Label Text="{Binding Summary}" Style="{StaticResource Muted}" />
-                <Button Text="{Binding DueButtonText}"
-                        IsVisible="{Binding HasDue}"
-                        Command="{Binding ReviewDueCommand}"
-                        BackgroundColor="{StaticResource Terracotta}" />
+                <SearchBar Text="{Binding SearchText}" Placeholder="Lektion oder Wort suchen (auch Arabisch)" />
+                <Border Style="{StaticResource Card}" IsVisible="{Binding HasDue}" BackgroundColor="{DynamicResource LearningSoft}">
+                    <Border.GestureRecognizers><TapGestureRecognizer Command="{Binding ReviewDueCommand}" /></Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout>
+                            <Label Text="Wiederholen" FontAttributes="Bold" TextColor="{DynamicResource Learning}" />
+                            <Label Text="{Binding DueText}" Style="{StaticResource Muted}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="1" Text="›" FontSize="28" TextColor="{DynamicResource Learning}" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
             </VerticalStackLayout>
         </CollectionView.Header>
 
         <CollectionView.EmptyView>
-            <VerticalStackLayout Padding="32" Spacing="8" VerticalOptions="Center">
-                <Label Text="Noch keine Lektionen" Style="{StaticResource Heading}" HorizontalTextAlignment="Center" />
-                <Label Text="Importiere eine Vokabeldatei unter „Einstellungen“."
-                       Style="{StaticResource Muted}" HorizontalTextAlignment="Center" />
-            </VerticalStackLayout>
+            <Label Text="Keine Treffer" Style="{StaticResource Muted}" HorizontalTextAlignment="Center" Margin="32" />
         </CollectionView.EmptyView>
 
         <CollectionView.ItemTemplate>
@@ -32,23 +33,22 @@
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnLessonTapped" />
                     </Border.GestureRecognizers>
-                    <Grid ColumnDefinitions="48,*,Auto" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="14" RowSpacing="4">
-                        <Border Grid.RowSpan="3" WidthRequest="44" HeightRequest="44" VerticalOptions="Center"
-                                StrokeThickness="0" StrokeShape="RoundRectangle 22"
-                                BackgroundColor="{AppThemeBinding Light={StaticResource SandDark}, Dark={StaticResource NightLine}}">
-                            <Label Text="{Binding Badge}" FontAttributes="Bold" FontSize="17"
-                                   HorizontalOptions="Center" VerticalOptions="Center"
-                                   TextColor="{AppThemeBinding Light={StaticResource Teal}, Dark={StaticResource Moon}}" />
+                    <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,Auto" RowSpacing="6">
+                        <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" />
+                        <Border Grid.Column="1" Style="{StaticResource Pill}" Padding="10,2"
+                                BackgroundColor="{DynamicResource SurfaceAlt}">
+                            <Label Text="{Binding TermCount}" FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource Muted}" />
                         </Border>
-                        <Label Grid.Column="1" Text="{Binding Title}" FontAttributes="Bold" FontSize="17"
+                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Topic}" Style="{StaticResource Muted}"
                                LineBreakMode="TailTruncation" />
-                        <Label Grid.Column="1" Grid.Row="1" Text="{Binding Subtitle}" Style="{StaticResource Muted}" />
-                        <ProgressBar Grid.Column="1" Grid.Row="2" Progress="{Binding Progress}" Margin="0,6,0,0" />
-                        <Border Grid.Column="2" Grid.RowSpan="3" IsVisible="{Binding HasDue}" VerticalOptions="Center"
-                                StrokeThickness="0" StrokeShape="RoundRectangle 10" Padding="8,3"
-                                BackgroundColor="{StaticResource Terracotta}">
-                            <Label Text="{Binding DueText}" FontSize="12" TextColor="White" FontAttributes="Bold" />
-                        </Border>
+                        <Grid Grid.Row="2" Grid.ColumnSpan="2" ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
+                            <ProgressBar Progress="{Binding Progress}" ProgressColor="{DynamicResource Known}" VerticalOptions="Center" />
+                            <Label Grid.Column="1" Text="{Binding ProgressText}" FontSize="12" TextColor="{DynamicResource Known}" FontAttributes="Bold" />
+                            <Border Grid.Column="2" Style="{StaticResource Pill}" Padding="8,1" IsVisible="{Binding HasDue}"
+                                    BackgroundColor="{DynamicResource LearningSoft}">
+                                <Label Text="{Binding DueText}" FontSize="11" FontAttributes="Bold" TextColor="{DynamicResource Learning}" />
+                            </Border>
+                        </Grid>
                     </Grid>
                 </Border>
             </DataTemplate>

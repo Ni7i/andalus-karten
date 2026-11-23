@@ -62,4 +62,18 @@ public class ProgressServiceTests
         Assert.True(sut.Get("w1").IsNew);
         Assert.False(sut.Get("w2").IsNew);
     }
+
+    [Fact]
+    public async Task Restore_undoes_a_grade()
+    {
+        var sut = CreateSut();
+        await sut.EnsureLoadedAsync();
+        var before = sut.Get("w1");
+
+        await sut.GradeAsync("w1", true);
+        await sut.RestoreAsync("w1", before);
+
+        Assert.True(sut.Get("w1").IsNew);
+        Assert.Empty(_store.Saved);
+    }
 }

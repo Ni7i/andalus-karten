@@ -20,16 +20,21 @@ public static class MauiProgram
         services.AddSingleton<ProgressService>();
         services.AddSingleton<VocabularyRepository>();
         services.AddSingleton<StudySettings>();
+        services.AddSingleton<StarService>();
 
         services.AddTransient<LessonsViewModel>();
         services.AddTransient<LessonViewModel>();
-        services.AddTransient<StudyViewModel>();
+        services.AddTransient<FlashcardsViewModel>();
+        services.AddTransient<LearnViewModel>();
+        services.AddTransient<MatchViewModel>();
         services.AddTransient<SettingsViewModel>();
 
         services.AddTransient<LessonsPage>();
         services.AddTransient<EssentialPage>();
         services.AddTransient<LessonPage>();
-        services.AddTransient<StudyPage>();
+        services.AddTransient<FlashcardsPage>();
+        services.AddTransient<LearnPage>();
+        services.AddTransient<MatchPage>();
         services.AddTransient<SettingsPage>();
 
         return builder.Build();

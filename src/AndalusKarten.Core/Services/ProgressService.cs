@@ -38,6 +38,21 @@ public sealed class ProgressService(IProgressStore store, LeitnerScheduler sched
         return next;
     }
 
+    /// <summary>Setzt eine Karte auf einen früheren Stand zurück (für „Rückgängig“).</summary>
+    public async Task RestoreAsync(string wordId, CardProgress previous, CancellationToken ct = default)
+    {
+        if (previous is { IsNew: true, TimesCorrect: 0, TimesWrong: 0 })
+        {
+            _progress.Remove(wordId);
+        }
+        else
+        {
+            _progress[wordId] = previous;
+        }
+
+        await store.SaveAsync(_progress, ct);
+    }
+
     public LessonStats StatsFor(IEnumerable<Word> words)
     {
         int total = 0, @new = 0, learning = 0, mastered = 0, due = 0;

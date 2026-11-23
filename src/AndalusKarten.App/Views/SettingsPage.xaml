@@ -9,7 +9,7 @@
     <ScrollView>
         <VerticalStackLayout Padding="16" Spacing="4" MaximumWidthRequest="640">
 
-            <Label Text="LERNEN" Style="{StaticResource SectionTitle}" />
+            <Label Text="LERNEN" Style="{StaticResource Caption}" />
             <Border Style="{StaticResource Card}">
                 <VerticalStackLayout Spacing="12">
                     <Label Text="Abfragerichtung" FontAttributes="Bold" />
@@ -21,22 +21,22 @@
                 </VerticalStackLayout>
             </Border>
 
-            <Label Text="VOKABELN" Style="{StaticResource SectionTitle}" />
+            <Label Text="VOKABELN" Style="{StaticResource Caption}" />
             <Border Style="{StaticResource Card}">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="{Binding VocabularyInfo}" FontAttributes="Bold" />
                     <Label Text="{Binding SourceInfo}" Style="{StaticResource Muted}" />
                     <Button Text="Vokabeldatei importieren …" Command="{Binding ImportCommand}"
-                            Style="{StaticResource SecondaryButton}" />
+                            Style="{StaticResource Ghost}" />
                     <Button Text="Mitgelieferte Liste verwenden" Command="{Binding ResetVocabularyCommand}"
-                            Style="{StaticResource SecondaryButton}" IsVisible="{Binding IsImported}" />
+                            Style="{StaticResource Ghost}" IsVisible="{Binding IsImported}" />
                 </VerticalStackLayout>
             </Border>
 
-            <Label Text="FORTSCHRITT" Style="{StaticResource SectionTitle}" />
+            <Label Text="FORTSCHRITT" Style="{StaticResource Caption}" />
             <Border Style="{StaticResource Card}">
                 <Button Text="Gesamten Fortschritt löschen" Command="{Binding ResetProgressCommand}"
-                        Style="{StaticResource DangerButton}" />
+                        Style="{StaticResource Ghost}" TextColor="{DynamicResource Wrong}" />
             </Border>
 
             <Label Text="{Binding AppVersion}" Style="{StaticResource Muted}"

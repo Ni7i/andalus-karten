@@ -2,81 +2,79 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <!-- Andalusische Palette: Petrol, Sand, Terrakotta -->
-    <Color x:Key="Teal">#0F5257</Color>
-    <Color x:Key="TealLight">#5FB3B3</Color>
-    <Color x:Key="Sand">#F6F0E4</Color>
-    <Color x:Key="SandDark">#E9DCC4</Color>
-    <Color x:Key="Terracotta">#C0583A</Color>
-    <Color x:Key="Olive">#4E7D3A</Color>
-    <Color x:Key="Ink">#1F2A2B</Color>
-    <Color x:Key="InkMuted">#5C6A6B</Color>
-    <Color x:Key="Night">#121A1B</Color>
-    <Color x:Key="NightCard">#1C2627</Color>
-    <Color x:Key="NightLine">#2C3A3B</Color>
-    <Color x:Key="Moon">#ECE6DA</Color>
-    <Color x:Key="MoonMuted">#9DAAAA</Color>
+    <!-- Farben kommen aus Services/Palette.cs (hell/dunkel) und werden per DynamicResource genutzt. -->
 
     <Style TargetType="Page" ApplyToDerivedTypes="True">
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Sand}, Dark={StaticResource Night}}" />
-        <Setter Property="Padding" Value="0" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Bg}" />
     </Style>
 
     <Style TargetType="Shell" ApplyToDerivedTypes="True">
-        <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource Teal}, Dark={StaticResource NightCard}}" />
-        <Setter Property="Shell.ForegroundColor" Value="{StaticResource Sand}" />
-        <Setter Property="Shell.TitleColor" Value="{StaticResource Sand}" />
+        <Setter Property="Shell.BackgroundColor" Value="{DynamicResource Bg}" />
+        <Setter Property="Shell.ForegroundColor" Value="{DynamicResource Ink}" />
+        <Setter Property="Shell.TitleColor" Value="{DynamicResource Ink}" />
         <Setter Property="Shell.NavBarHasShadow" Value="False" />
-        <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Light=White, Dark={StaticResource NightCard}}" />
-        <Setter Property="Shell.TabBarForegroundColor" Value="{AppThemeBinding Light={StaticResource Teal}, Dark={StaticResource TealLight}}" />
-        <Setter Property="Shell.TabBarTitleColor" Value="{AppThemeBinding Light={StaticResource Teal}, Dark={StaticResource TealLight}}" />
-        <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding Light={StaticResource InkMuted}, Dark={StaticResource MoonMuted}}" />
+        <Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource Surface}" />
+        <Setter Property="Shell.TabBarForegroundColor" Value="{DynamicResource Accent}" />
+        <Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource Accent}" />
+        <Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource Muted}" />
     </Style>
 
     <Style TargetType="Label">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Ink}, Dark={StaticResource Moon}}" />
+        <Setter Property="TextColor" Value="{DynamicResource Ink}" />
         <Setter Property="FontSize" Value="16" />
     </Style>
 
-    <Style x:Key="Heading" TargetType="Label">
-        <Setter Property="FontSize" Value="24" />
+    <Style x:Key="Title" TargetType="Label">
+        <Setter Property="FontSize" Value="28" />
         <Setter Property="FontAttributes" Value="Bold" />
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Teal}, Dark={StaticResource Moon}}" />
+    </Style>
+
+    <Style x:Key="Heading" TargetType="Label">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontAttributes" Value="Bold" />
     </Style>
 
     <Style x:Key="Muted" TargetType="Label">
         <Setter Property="FontSize" Value="14" />
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource InkMuted}, Dark={StaticResource MoonMuted}}" />
+        <Setter Property="TextColor" Value="{DynamicResource Muted}" />
     </Style>
 
-    <Style x:Key="SectionTitle" TargetType="Label" BasedOn="{StaticResource Muted}">
-        <Setter Property="FontSize" Value="13" />
+    <Style x:Key="Caption" TargetType="Label">
+        <Setter Property="FontSize" Value="12" />
         <Setter Property="FontAttributes" Value="Bold" />
-        <Setter Property="CharacterSpacing" Value="1" />
-        <Setter Property="Margin" Value="4,16,0,6" />
+        <Setter Property="CharacterSpacing" Value="0.6" />
+        <Setter Property="TextColor" Value="{DynamicResource Muted}" />
     </Style>
 
-    <Style x:Key="ArabicText" TargetType="Label">
+    <Style x:Key="Arabic" TargetType="Label">
         <Setter Property="FlowDirection" Value="RightToLeft" />
         <Setter Property="FontSize" Value="24" />
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Ink}, Dark={StaticResource Moon}}" />
+        <Setter Property="TextColor" Value="{DynamicResource Ink}" />
     </Style>
 
     <Style x:Key="Card" TargetType="Border">
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark={StaticResource NightCard}}" />
-        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource SandDark}, Dark={StaticResource NightLine}}" />
-        <Setter Property="StrokeThickness" Value="1" />
-        <Setter Property="StrokeShape" Value="RoundRectangle 16" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Surface}" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 14" />
         <Setter Property="Padding" Value="16" />
+        <Setter Property="Shadow">
+            <Shadow Brush="#1A2340" Offset="0,2" Radius="10" Opacity="0.10" />
+        </Setter>
+    </Style>
+
+    <Style x:Key="Pill" TargetType="Border">
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 16" />
+        <Setter Property="Padding" Value="12,4" />
     </Style>
 
     <Style TargetType="Button">
-        <Setter Property="BackgroundColor" Value="{StaticResource Teal}" />
-        <Setter Property="TextColor" Value="White" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Accent}" />
+        <Setter Property="TextColor" Value="{DynamicResource OnAccent}" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="FontAttributes" Value="Bold" />
-        <Setter Property="CornerRadius" Value="12" />
-        <Setter Property="Padding" Value="16,12" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Padding" Value="18,12" />
         <Setter Property="MinimumHeightRequest" Value="48" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
@@ -92,33 +90,45 @@
         </Setter>
     </Style>
 
-    <Style x:Key="SecondaryButton" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Teal}, Dark={StaticResource TealLight}}" />
-        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource Teal}, Dark={StaticResource TealLight}}" />
-        <Setter Property="BorderWidth" Value="1.5" />
+    <Style x:Key="Ghost" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Surface}" />
+        <Setter Property="TextColor" Value="{DynamicResource Ink}" />
+        <Setter Property="BorderColor" Value="{DynamicResource Line}" />
+        <Setter Property="BorderWidth" Value="2" />
         <Setter Property="FontSize" Value="16" />
-        <Setter Property="CornerRadius" Value="12" />
-        <Setter Property="Padding" Value="16,12" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Padding" Value="18,12" />
         <Setter Property="MinimumHeightRequest" Value="48" />
     </Style>
 
-    <Style x:Key="DangerButton" TargetType="Button" BasedOn="{StaticResource SecondaryButton}">
-        <Setter Property="TextColor" Value="{StaticResource Terracotta}" />
-        <Setter Property="BorderColor" Value="{StaticResource Terracotta}" />
+    <Style x:Key="Round" TargetType="Button" BasedOn="{StaticResource Ghost}">
+        <Setter Property="WidthRequest" Value="56" />
+        <Setter Property="HeightRequest" Value="56" />
+        <Setter Property="CornerRadius" Value="28" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="FontSize" Value="22" />
     </Style>
 
     <Style TargetType="ProgressBar">
-        <Setter Property="ProgressColor" Value="{AppThemeBinding Light={StaticResource Teal}, Dark={StaticResource TealLight}}" />
+        <Setter Property="ProgressColor" Value="{DynamicResource Accent}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Line}" />
     </Style>
 
     <Style TargetType="Switch">
-        <Setter Property="OnColor" Value="{StaticResource TealLight}" />
-        <Setter Property="ThumbColor" Value="{StaticResource Teal}" />
+        <Setter Property="OnColor" Value="{DynamicResource AccentSoft}" />
+        <Setter Property="ThumbColor" Value="{DynamicResource Accent}" />
+    </Style>
+
+    <Style TargetType="SearchBar">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Surface}" />
+        <Setter Property="TextColor" Value="{DynamicResource Ink}" />
+        <Setter Property="PlaceholderColor" Value="{DynamicResource Muted}" />
+        <Setter Property="CancelButtonColor" Value="{DynamicResource Muted}" />
     </Style>
 
     <Style TargetType="Picker">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Ink}, Dark={StaticResource Moon}}" />
-        <Setter Property="TitleColor" Value="{AppThemeBinding Light={StaticResource InkMuted}, Dark={StaticResource MoonMuted}}" />
+        <Setter Property="TextColor" Value="{DynamicResource Ink}" />
+        <Setter Property="TitleColor" Value="{DynamicResource Muted}" />
     </Style>
 </ResourceDictionary>

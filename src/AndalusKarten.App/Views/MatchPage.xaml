@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AndalusKarten.ViewModels"
+             x:Class="AndalusKarten.Views.MatchPage"
+             x:DataType="vm:MatchViewModel"
+             Title="Zuordnen">
+
+    <Grid Padding="16,8,16,16" RowDefinitions="Auto,*" RowSpacing="14" MaximumWidthRequest="760">
+        <Grid ColumnDefinitions="*,Auto">
+            <Label Text="{Binding BestText}" Style="{StaticResource Muted}" VerticalOptions="Center" />
+            <Label Grid.Column="1" Text="{Binding TimeText}" FontSize="22" FontAttributes="Bold" />
+        </Grid>
+
+        <FlexLayout Grid.Row="1" BindableLayout.ItemsSource="{Binding Tiles}" Wrap="Wrap"
+                    JustifyContent="SpaceBetween" AlignContent="Start" IsVisible="{Binding IsPlaying}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="vm:MatchTile">
+                    <Border Style="{StaticResource Card}" FlexLayout.Basis="32%" Margin="0,0,0,10" Padding="10"
+                            HeightRequest="110" Stroke="{DynamicResource Line}" StrokeThickness="2">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TapCommand, Source={RelativeSource AncestorType={x:Type vm:MatchViewModel}}, x:DataType=vm:MatchViewModel}"
+                                                  CommandParameter="{Binding .}" />
+                        </Border.GestureRecognizers>
+                        <Border.Triggers>
+                            <DataTrigger TargetType="Border" Binding="{Binding State}" Value="{x:Static vm:TileState.Selected}">
+                                <Setter Property="Stroke" Value="{DynamicResource Accent}" />
+                                <Setter Property="BackgroundColor" Value="{DynamicResource AccentSoft}" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Border" Binding="{Binding State}" Value="{x:Static vm:TileState.Wrong}">
+                                <Setter Property="Stroke" Value="{DynamicResource Wrong}" />
+                                <Setter Property="BackgroundColor" Value="{DynamicResource LearningSoft}" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Border" Binding="{Binding State}" Value="{x:Static vm:TileState.Matched}">
+                                <Setter Property="Opacity" Value="0" />
+                                <Setter Property="InputTransparent" Value="True" />
+                            </DataTrigger>
+                        </Border.Triggers>
+                        <Label Text="{Binding Text}" FontSize="{Binding FontSize}" FlowDirection="{Binding Flow}"
+                               HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                               LineBreakMode="WordWrap" MaxLines="4" />
+                    </Border>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </FlexLayout>
+
+        <VerticalStackLayout Grid.Row="1" Spacing="16" VerticalOptions="Center" IsVisible="{Binding IsFinished}">
+            <Label Text="Alle Paare gefunden!" Style="{StaticResource Title}" HorizontalTextAlignment="Center" />
+            <Label Text="{Binding ResultText}" HorizontalTextAlignment="Center" Style="{StaticResource Muted}" FontSize="16" />
+            <Button Text="Nochmal spielen" Command="{Binding StartCommand}" />
+            <Button Text="Fertig" Style="{StaticResource Ghost}" Command="{Binding CloseCommand}" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

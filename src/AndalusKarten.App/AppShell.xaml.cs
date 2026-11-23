@@ -8,12 +8,16 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
         Routing.RegisterRoute(Routes.Lesson, typeof(LessonPage));
-        Routing.RegisterRoute(Routes.Study, typeof(StudyPage));
+        Routing.RegisterRoute(Routes.Flashcards, typeof(FlashcardsPage));
+        Routing.RegisterRoute(Routes.Learn, typeof(LearnPage));
+        Routing.RegisterRoute(Routes.Match, typeof(MatchPage));
     }
 }
 
 public static class Routes
 {
     public const string Lesson = "lesson";
-    public const string Study = "study";
+    public const string Flashcards = "flashcards";
+    public const string Learn = "learn";
+    public const string Match = "match";
 }
