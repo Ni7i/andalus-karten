@@ -68,10 +68,10 @@ jobs:
         with:
           dotnet-version: 10.0.x
       - name: MAUI-Workload installieren
-        run: dotnet workload install maui-maccatalyst
+        run: dotnet workload install maui-maccatalyst --version 10.401.0  # MacCatalyst 26.5 passt zu Xcode 26.x auf den Runnern
       - name: Mac-App bauen (ad-hoc signiert)
         run: >
-          dotnet publish $PROJECT -f net10.0-maccatalyst -c Release -p:MacOnly=true -p:ValidateXcodeVersion=false
+          dotnet publish $PROJECT -f net10.0-maccatalyst -c Release -p:MacOnly=true
           -p:CreatePackage=false -p:EnableCodeSigning=true -p:CodesignKey=-
       - name: App zippen
         run: |
