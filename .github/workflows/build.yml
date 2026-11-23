@@ -75,11 +75,19 @@ jobs:
           -p:CreatePackage=false -p:EnableCodeSigning=true -p:CodesignKey=-
       - name: App zippen
         run: |
-          APP=$(find src/AndalusKarten.App/bin/Release/net10.0-maccatalyst -name "*.app" -maxdepth 3 | head -1)
-          echo "Gefunden: $APP"
+          echo "Gefundene App-Bundles:"
+          find src/AndalusKarten.App/bin/Release/net10.0-maccatalyst -name "*.app" -maxdepth 3 -print
+          # Die fertige Universal-App liegt direkt im TFM-Ordner, nicht in den RID-Unterordnern.
+          APP=$(find src/AndalusKarten.App/bin/Release/net10.0-maccatalyst -maxdepth 1 -name "*.app" | head -1)
+          test -n "$APP"
           mkdir -p dist/mac
           ditto "$APP" "dist/mac/Andalus Karten.app"
-          ditto -c -k --keepParent "dist/mac/Andalus Karten.app" dist/AndalusKarten-macOS.zip
+          FINAL="dist/mac/Andalus Karten.app"
+          EXE="$FINAL/Contents/MacOS/$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$FINAL/Contents/Info.plist")"
+          lipo -info "$EXE"
+          codesign --force --deep --sign - "$FINAL"
+          codesign --verify --deep --strict --verbose=2 "$FINAL"
+          ditto -c -k --keepParent "$FINAL" dist/AndalusKarten-macOS.zip
       - uses: actions/upload-artifact@v5
         with:
           name: AndalusKarten-macOS
