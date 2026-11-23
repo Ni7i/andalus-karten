@@ -4,6 +4,8 @@
     <TargetFrameworks>net10.0-android</TargetFrameworks>
     <!-- Mac Catalyst lässt sich nur auf macOS (mit Xcode) bauen. -->
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('osx'))">$(TargetFrameworks);net10.0-maccatalyst</TargetFrameworks>
+    <!-- CI auf macOS: nur Mac Catalyst bauen (dotnet publish -p:MacOnly=true) -->
+    <TargetFrameworks Condition="'$(MacOnly)' == 'true'">net10.0-maccatalyst</TargetFrameworks>
     <!-- Nur für schnelle Compile-Checks ohne Android-/Apple-SDK: dotnet build -p:CompileCheck=true -->
     <TargetFrameworks Condition="'$(CompileCheck)' == 'true'">net10.0</TargetFrameworks>
     <OutputType Condition="'$(CompileCheck)' != 'true'">Exe</OutputType>
