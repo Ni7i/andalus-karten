@@ -1,8 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="456" height="456" viewBox="0 0 456 456">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3D58A"/>
+      <stop offset="1" stop-color="#C9932F"/>
+    </linearGradient>
+  </defs>
   <g transform="translate(228 228)">
-    <rect x="-92" y="-92" width="184" height="184" fill="#E9DCC4"/>
-    <rect x="-92" y="-92" width="184" height="184" fill="#E9DCC4" transform="rotate(45)"/>
-    <circle r="62" fill="#0F5257"/>
-    <circle r="40" fill="#C0583A"/>
+    <!-- achtzackiger andalusischer Stern -->
+    <rect x="-100" y="-100" width="200" height="200" rx="10" fill="url(#gold)"/>
+    <rect x="-100" y="-100" width="200" height="200" rx="10" fill="url(#gold)" transform="rotate(45)"/>
+    <rect x="-88" y="-88" width="176" height="176" rx="8" fill="#0F5257"/>
+    <rect x="-88" y="-88" width="176" height="176" rx="8" fill="#0F5257" transform="rotate(45)"/>
+    <!-- Hufeisenbogen (Alhambra) als Karteikarte -->
+    <path d="M -44 62 L -44 -6 A 50 50 0 1 1 44 -6 L 44 62 Z" fill="#F6F0E4"/>
+    <path d="M -30 62 L -30 -4 A 36 36 0 1 1 30 -4 L 30 62 Z" fill="#C0583A"/>
+    <circle cx="0" cy="-14" r="9" fill="#F3D58A"/>
   </g>
 </svg>
