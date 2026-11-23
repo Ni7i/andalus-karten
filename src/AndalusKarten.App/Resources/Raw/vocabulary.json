@@ -1,0 +1,56 @@
+{
+  "lessons": [
+    {
+      "id": "L01", "number": 1, "title": "Begrüßung", "essential": false,
+      "words": [
+        { "id": "L01-001", "ar": "السَّلَامُ عَلَيْكُمْ", "de": "Friede sei mit euch (Gruß)", "tr": "as-salāmu ʿalaykum" },
+        { "id": "L01-002", "ar": "وَعَلَيْكُمُ السَّلَامُ", "de": "Und mit euch sei Friede (Antwort)", "tr": "wa-ʿalaykumu s-salām" },
+        { "id": "L01-003", "ar": "مَرْحَبًا", "de": "Hallo", "tr": "marḥaban" },
+        { "id": "L01-004", "ar": "صَبَاحُ الْخَيْرِ", "de": "Guten Morgen", "tr": "ṣabāḥu l-khayr" },
+        { "id": "L01-005", "ar": "مَسَاءُ الْخَيْرِ", "de": "Guten Abend", "tr": "masāʾu l-khayr" },
+        { "id": "L01-006", "ar": "شُكْرًا", "de": "Danke", "tr": "shukran" },
+        { "id": "L01-007", "ar": "مَعَ السَّلَامَةِ", "de": "Auf Wiedersehen", "tr": "maʿa s-salāma" },
+        { "id": "L01-008", "ar": "كَيْفَ حَالُكَ؟", "de": "Wie geht es dir? (m)", "tr": "kayfa ḥāluka" }
+      ]
+    },
+    {
+      "id": "L02", "number": 2, "title": "Familie", "essential": false,
+      "words": [
+        { "id": "L02-001", "ar": "أَبٌ", "de": "Vater", "tr": "abun", "note": "Pl. آبَاءٌ" },
+        { "id": "L02-002", "ar": "أُمٌّ", "de": "Mutter", "tr": "ummun", "note": "Pl. أُمَّهَاتٌ" },
+        { "id": "L02-003", "ar": "أَخٌ", "de": "Bruder", "tr": "akhun", "note": "Pl. إِخْوَةٌ" },
+        { "id": "L02-004", "ar": "أُخْتٌ", "de": "Schwester", "tr": "ukhtun", "note": "Pl. أَخَوَاتٌ" },
+        { "id": "L02-005", "ar": "اِبْنٌ", "de": "Sohn", "tr": "ibnun", "note": "Pl. أَبْنَاءٌ" },
+        { "id": "L02-006", "ar": "بِنْتٌ", "de": "Tochter, Mädchen", "tr": "bintun", "note": "Pl. بَنَاتٌ" },
+        { "id": "L02-007", "ar": "عَائِلَةٌ", "de": "Familie", "tr": "ʿāʾilatun", "note": "Pl. عَائِلَاتٌ" }
+      ]
+    },
+    {
+      "id": "E01", "number": 1, "title": "Personalpronomen", "essential": true,
+      "words": [
+        { "id": "E01-001", "ar": "أَنَا", "de": "ich", "tr": "anā" },
+        { "id": "E01-002", "ar": "أَنْتَ", "de": "du (m)", "tr": "anta" },
+        { "id": "E01-003", "ar": "أَنْتِ", "de": "du (w)", "tr": "anti" },
+        { "id": "E01-004", "ar": "هُوَ", "de": "er", "tr": "huwa" },
+        { "id": "E01-005", "ar": "هِيَ", "de": "sie (Sg.)", "tr": "hiya" },
+        { "id": "E01-006", "ar": "نَحْنُ", "de": "wir", "tr": "naḥnu" },
+        { "id": "E01-007", "ar": "هُمْ", "de": "sie (Pl. m)", "tr": "hum" }
+      ]
+    },
+    {
+      "id": "E02", "number": 2, "title": "Zahlen 1–10", "essential": true,
+      "words": [
+        { "id": "E02-001", "ar": "وَاحِدٌ", "de": "eins (1)", "tr": "wāḥid" },
+        { "id": "E02-002", "ar": "اِثْنَانِ", "de": "zwei (2)", "tr": "ithnān" },
+        { "id": "E02-003", "ar": "ثَلَاثَةٌ", "de": "drei (3)", "tr": "thalātha" },
+        { "id": "E02-004", "ar": "أَرْبَعَةٌ", "de": "vier (4)", "tr": "arbaʿa" },
+        { "id": "E02-005", "ar": "خَمْسَةٌ", "de": "fünf (5)", "tr": "khamsa" },
+        { "id": "E02-006", "ar": "سِتَّةٌ", "de": "sechs (6)", "tr": "sitta" },
+        { "id": "E02-007", "ar": "سَبْعَةٌ", "de": "sieben (7)", "tr": "sabʿa" },
+        { "id": "E02-008", "ar": "ثَمَانِيَةٌ", "de": "acht (8)", "tr": "thamāniya" },
+        { "id": "E02-009", "ar": "تِسْعَةٌ", "de": "neun (9)", "tr": "tisʿa" },
+        { "id": "E02-010", "ar": "عَشَرَةٌ", "de": "zehn (10)", "tr": "ʿashara" }
+      ]
+    }
+  ]
+}

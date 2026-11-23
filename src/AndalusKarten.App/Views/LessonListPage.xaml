@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AndalusKarten.ViewModels"
+             x:Class="AndalusKarten.Views.LessonListPage"
+             x:DataType="vm:LessonsViewModel">
+
+    <CollectionView ItemsSource="{Binding Lessons}"
+                    SelectionMode="None"
+                    MaximumWidthRequest="760">
+        <CollectionView.Header>
+            <VerticalStackLayout Padding="16,16,16,4" Spacing="12">
+                <Label Text="{Binding Summary}" Style="{StaticResource Muted}" />
+                <Button Text="{Binding DueButtonText}"
+                        IsVisible="{Binding HasDue}"
+                        Command="{Binding ReviewDueCommand}"
+                        BackgroundColor="{StaticResource Terracotta}" />
+            </VerticalStackLayout>
+        </CollectionView.Header>
+
+        <CollectionView.EmptyView>
+            <VerticalStackLayout Padding="32" Spacing="8" VerticalOptions="Center">
+                <Label Text="Noch keine Lektionen" Style="{StaticResource Heading}" HorizontalTextAlignment="Center" />
+                <Label Text="Importiere eine Vokabeldatei unter „Einstellungen“."
+                       Style="{StaticResource Muted}" HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+        </CollectionView.EmptyView>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="vm:LessonItem">
+                <Border Style="{StaticResource Card}" Margin="16,6">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnLessonTapped" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="48,*,Auto" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="14" RowSpacing="4">
+                        <Border Grid.RowSpan="3" WidthRequest="44" HeightRequest="44" VerticalOptions="Center"
+                                StrokeThickness="0" StrokeShape="RoundRectangle 22"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource SandDark}, Dark={StaticResource NightLine}}">
+                            <Label Text="{Binding Badge}" FontAttributes="Bold" FontSize="17"
+                                   HorizontalOptions="Center" VerticalOptions="Center"
+                                   TextColor="{AppThemeBinding Light={StaticResource Teal}, Dark={StaticResource Moon}}" />
+                        </Border>
+                        <Label Grid.Column="1" Text="{Binding Title}" FontAttributes="Bold" FontSize="17"
+                               LineBreakMode="TailTruncation" />
+                        <Label Grid.Column="1" Grid.Row="1" Text="{Binding Subtitle}" Style="{StaticResource Muted}" />
+                        <ProgressBar Grid.Column="1" Grid.Row="2" Progress="{Binding Progress}" Margin="0,6,0,0" />
+                        <Border Grid.Column="2" Grid.RowSpan="3" IsVisible="{Binding HasDue}" VerticalOptions="Center"
+                                StrokeThickness="0" StrokeShape="RoundRectangle 10" Padding="8,3"
+                                BackgroundColor="{StaticResource Terracotta}">
+                            <Label Text="{Binding DueText}" FontSize="12" TextColor="White" FontAttributes="Bold" />
+                        </Border>
+                    </Grid>
+                </Border>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+
+        <CollectionView.Footer>
+            <BoxView HeightRequest="16" Color="Transparent" />
+        </CollectionView.Footer>
+    </CollectionView>
+</ContentPage>
