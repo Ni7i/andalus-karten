@@ -77,8 +77,9 @@ jobs:
         run: |
           APP=$(find src/AndalusKarten.App/bin/Release/net10.0-maccatalyst -name "*.app" -maxdepth 3 | head -1)
           echo "Gefunden: $APP"
-          mkdir -p dist
-          ditto -c -k --keepParent "$APP" dist/AndalusKarten-macOS.zip
+          mkdir -p dist/mac
+          ditto "$APP" "dist/mac/Andalus Karten.app"
+          ditto -c -k --keepParent "dist/mac/Andalus Karten.app" dist/AndalusKarten-macOS.zip
       - uses: actions/upload-artifact@v5
         with:
           name: AndalusKarten-macOS
