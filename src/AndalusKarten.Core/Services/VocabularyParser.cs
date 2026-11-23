@@ -30,7 +30,6 @@ public static class VocabularyParser
     {
         var lessons = new List<Lesson>();
         var seenLessonIds = new HashSet<string>(StringComparer.Ordinal);
-        var seenWordIds = new HashSet<string>(StringComparer.Ordinal);
 
         foreach (var (l, li) in (dto.Lessons ?? []).Select((l, i) => (l, i)))
         {
@@ -45,6 +44,9 @@ public static class VocabularyParser
                 throw new FormatException($"Doppelte Lektions-ID „{lessonId}“.");
             }
 
+            // Wort-IDs müssen nur innerhalb einer Lektion eindeutig sein: Essential-Lektionen
+            // verwenden dieselben IDs wie die Buchlektionen und teilen so den Lernfortschritt.
+            var seenWordIds = new HashSet<string>(StringComparer.Ordinal);
             var words = new List<Word>();
             foreach (var (w, wi) in (l.Words ?? []).Select((w, i) => (w, i)))
             {
@@ -56,7 +58,7 @@ public static class VocabularyParser
                 var wordId = string.IsNullOrWhiteSpace(w.Id) ? $"{lessonId}-{wi + 1:D3}" : w.Id.Trim();
                 if (!seenWordIds.Add(wordId))
                 {
-                    throw new FormatException($"Doppelte Wort-ID „{wordId}“.");
+                    throw new FormatException($"Doppelte Wort-ID „{wordId}“ in Lektion „{lessonId}“.");
                 }
 
                 words.Add(new Word

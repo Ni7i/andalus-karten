@@ -50,6 +50,23 @@ dotnet workload install maui-maccatalyst
 dotnet build src/AndalusKarten.App -f net10.0-maccatalyst -t:Run
 ```
 
+## Inhalt
+
+Die Vokabeln stammen aus *Kashf al-Mufradāt* (Andalus Institute), Lektionen 1–70:
+
+- **70 Lektionen** mit ~4 500 Karten: Wortschatz (mit Plural), Verben (mit Präsens und
+  Maṣdar), Ausdrücke und Wörter im Kontext (Beispielsatz auf der Rückseite).
+  Die Bedeutungen sind – wie im Buch – auf Englisch.
+- **14 Essential-Lektionen** „Kernwortschatz“ je 5 Lektionen: nur Wörter und Verben mit
+  direkter Bedeutung, ohne Beispielsätze. Sie teilen den Lernfortschritt mit den Lektionen.
+
+Neu erzeugen aus dem PDF (die drei Teildateien in einem Ordner):
+
+```sh
+python3 tools/pdf_dump.py /pfad/zu/den/pdfs/   # → raw.json
+python3 tools/pdf_build.py src/AndalusKarten.App/Resources/Raw/vocabulary.json
+```
+
 ## Vokabeln pflegen
 
 Alle Wörter stehen in

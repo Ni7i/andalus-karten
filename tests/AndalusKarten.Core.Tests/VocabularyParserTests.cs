@@ -47,6 +47,20 @@ public class VocabularyParserTests
     }
 
     [Fact]
+    public void Same_word_id_in_different_lessons_is_allowed()
+    {
+        const string json = """
+        { "lessons": [
+            { "id": "L01", "words": [ { "id": "L01-001", "ar": "a", "de": "a" } ] },
+            { "id": "E01", "essential": true, "words": [ { "id": "L01-001", "ar": "a", "de": "a" } ] } ] }
+        """;
+
+        var vocab = VocabularyParser.Parse(json);
+        Assert.Equal(2, vocab.Lessons.Count);
+        Assert.Single(vocab.AllWords.DistinctBy(w => w.Id));
+    }
+
+    [Fact]
     public async Task Bundled_vocabulary_file_is_valid()
     {
         await using var stream = File.OpenRead(Path.Combine(AppContext.BaseDirectory, "vocabulary.json"));
